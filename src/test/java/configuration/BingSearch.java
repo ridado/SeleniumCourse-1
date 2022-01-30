@@ -1,11 +1,13 @@
-package taskCheckConfig;
+package configuration;
 
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-public class GoogleSearch {
+import java.util.concurrent.TimeUnit;
+
+public class BingSearch {
 
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver",
@@ -13,16 +15,13 @@ public class GoogleSearch {
 
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("http://www.google.com");
 
-        WebElement prompt = driver.findElement(By.cssSelector("#L2AGLb > div"));
-        prompt.click();
-
+        driver.get("http://www.bing.com");
         WebElement element = driver.findElement(By.name("q"));
-
         element.clear();
-        element.sendKeys("Coderslab");
+        element.sendKeys("Selenium");
         element.submit();
         driver.quit();
     }
 }
+
