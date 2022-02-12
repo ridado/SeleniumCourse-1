@@ -12,6 +12,10 @@ import pageObjectPattern.pages.AuthenticationPage;
 import pageObjectPattern.pages.CreateAnAccountPage;
 import pageObjectPattern.pages.HotelBrowser;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+
 public class HotelTestlabTests {
 
     private WebDriver driver;
@@ -61,6 +65,7 @@ public class HotelTestlabTests {
         String hotel = "The Hotel Prime";
         String checkInDate = "19-02-2022";
         String checkOutDate = "28-02-2022";
+        String roomName = "Delux Rooms dasdaddasdas";
 
         // act
         driver.get("https://hotel-testlab.coderslab.pl/en/");
@@ -70,5 +75,24 @@ public class HotelTestlabTests {
         driver.findElement(By.id("header_logo")).click();
 
         hotelBrowser.searchForHotel(hotel, checkInDate, checkOutDate);
+
+        // zadanie 3 - wyszukiwanie hotelu po nazwie
+//        String roomSelector = "//p[text() = '" + roomName + "']/../a";
+//        WebElement roomBookNowButton = driver.findElement(By.xpath(roomSelector));
+//        roomBookNowButton.click();
+
+        List<WebElement> rooms = driver.findElements(By.className("room_cont"));
+        boolean elementFound = false;
+        for (WebElement room : rooms
+             ) {
+            if (room.getText().contains(roomName)) {
+                room.findElement(By.cssSelector("a.ajax_add_to_cart_button")).click();
+                elementFound = true;
+                break;
+            }
+        }
+
+        if (!elementFound)
+            throw new NoSuchElementException("Pokoj o nazwie " + roomName + " nie zostal znaleziony");
     }
 }
