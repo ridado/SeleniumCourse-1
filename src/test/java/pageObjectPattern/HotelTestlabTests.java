@@ -7,8 +7,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pageObjectPattern.pages.AuthenticationPage;
 import pageObjectPattern.pages.CreateAnAccountPage;
+import pageObjectPattern.pages.HotelBrowser;
 
 public class HotelTestlabTests {
 
@@ -52,16 +54,21 @@ public class HotelTestlabTests {
     public void findAnyHotelZad2() {
         // arrange
         AuthenticationPage authenticationPage = new AuthenticationPage(driver);
+        HotelBrowser hotelBrowser = new HotelBrowser(driver);
 
         String email = "johnd@mail.com";
         String password = "qwerty";
+        String hotel = "The Hotel Prime";
+        String checkInDate = "19-02-2022";
+        String checkOutDate = "28-02-2022";
 
         // act
         driver.get("https://hotel-testlab.coderslab.pl/en/");
         driver.findElement(By.xpath("//*[@id=\"header\"]/div[3]/div/div/div[7]/ul/li/a/span")).click();
 
         authenticationPage.loginAs(email, password);
-
         driver.findElement(By.id("header_logo")).click();
+
+        hotelBrowser.searchForHotel(hotel, checkInDate, checkOutDate);
     }
 }
