@@ -7,14 +7,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import pageObjectPattern.pages.AuthenticationPage;
 import pageObjectPattern.pages.CreateAnAccountPage;
 import pageObjectPattern.pages.HotelBrowser;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import pageObjectPattern.pages.HotelsListingPage;
 
 public class HotelTestlabTests {
 
@@ -55,17 +51,18 @@ public class HotelTestlabTests {
     }
 
     @Test
-    public void findAnyHotelZad2() {
+    public void findAnyHotelZad2AndZad3() {
         // arrange
         AuthenticationPage authenticationPage = new AuthenticationPage(driver);
         HotelBrowser hotelBrowser = new HotelBrowser(driver);
+        HotelsListingPage hotelsListingPage = new HotelsListingPage(driver);
 
         String email = "johnd@mail.com";
         String password = "qwerty";
         String hotel = "The Hotel Prime";
         String checkInDate = "19-02-2022";
         String checkOutDate = "28-02-2022";
-        String roomName = "Delux Rooms dasdaddasdas";
+        String roomName = "Delux Rooms";
 
         // act
         driver.get("https://hotel-testlab.coderslab.pl/en/");
@@ -77,22 +74,6 @@ public class HotelTestlabTests {
         hotelBrowser.searchForHotel(hotel, checkInDate, checkOutDate);
 
         // zadanie 3 - wyszukiwanie hotelu po nazwie
-//        String roomSelector = "//p[text() = '" + roomName + "']/../a";
-//        WebElement roomBookNowButton = driver.findElement(By.xpath(roomSelector));
-//        roomBookNowButton.click();
-
-        List<WebElement> rooms = driver.findElements(By.className("room_cont"));
-        boolean elementFound = false;
-        for (WebElement room : rooms
-             ) {
-            if (room.getText().contains(roomName)) {
-                room.findElement(By.cssSelector("a.ajax_add_to_cart_button")).click();
-                elementFound = true;
-                break;
-            }
-        }
-
-        if (!elementFound)
-            throw new NoSuchElementException("Pokoj o nazwie " + roomName + " nie zostal znaleziony");
+        hotelsListingPage.bookOneRoom(roomName);
     }
 }
