@@ -8,8 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pageObjectPattern.pages.LoginPage;
 
-public class NoPopMyStoreLoginTests {
+public class MyStoreLoginTests {
 
     private WebDriver driver;
 
@@ -22,11 +23,11 @@ public class NoPopMyStoreLoginTests {
 
     @AfterEach
     public void tearDown() {
-        driver.quit();
+        //driver.quit();
     }
 
     @Test
-    public void loginWithProperCredentials() {
+    public void noPageObjectLoginWithProperCredentials() {
         WebElement emailInput = driver.findElement(By.name("email"));
         emailInput.sendKeys("johnd@mail.com");
 
@@ -38,5 +39,22 @@ public class NoPopMyStoreLoginTests {
 
         WebElement userNameLabel = driver.findElement(By.xpath("//*[@id=\"_desktop_user_info\"]/div/a[2]/span"));
         Assertions.assertEquals("John Doe", userNameLabel.getText());
+    }
+
+    @Test
+    public void loginWithProperCredentials() {
+        // arrange
+        String email = "johnd@mail.com";
+        String password = "qwerty";
+        LoginPage loginPage = new LoginPage(driver);
+
+        // Random random = new Random();
+        // String myEmail = "User" + random.nextInt(1000000) + "@mail.com";
+
+        // act
+        loginPage.loginAs(email, password);
+
+        // assert
+        Assertions.assertEquals("John Doe", loginPage.getLoggedUsername());
     }
 }
