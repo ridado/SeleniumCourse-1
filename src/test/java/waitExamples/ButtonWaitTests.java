@@ -21,7 +21,7 @@ public class ButtonWaitTests {
     @BeforeEach
     public void setUp() {
         System.setProperty("webdriver.chrome.driver",
-                "src/main/resources/drivers/chromedriver.exe");
+                "src/main/resources/drivers/chromedriver");
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();

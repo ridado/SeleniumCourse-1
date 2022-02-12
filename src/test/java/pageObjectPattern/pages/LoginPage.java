@@ -21,8 +21,6 @@ public class LoginPage {
     @FindBy(xpath = "//a[@class='account']")
     private WebElement userNameLabel;
 
-    @FindBy(css = "siema")
-    private WebElement aaa;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;

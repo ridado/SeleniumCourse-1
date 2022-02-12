@@ -7,10 +7,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pageObjectPattern.pages.AuthenticationPage;
 import pageObjectPattern.pages.CreateAnAccountPage;
 import pageObjectPattern.pages.HotelBrowser;
 import pageObjectPattern.pages.HotelsListingPage;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class HotelTestlabTests {
 
@@ -21,20 +26,20 @@ public class HotelTestlabTests {
         driver = WebDriverFactory.createChromeDriverWithImplicitlyWait(10);
     }
 
-    @AfterEach
-    public void tearDown() {
-        //driver.quit();
-    }
+//    @AfterEach
+//    public void tearDown() {
+//        driver.quit();
+//    }
 
     @Test
     public void userRegistrationZad1() {
         // arrange
         CreateAnAccountPage createAnAccountPage = new CreateAnAccountPage(driver);
 
-        String email = "johnd@mail.com";
-        String firstName = "John";
-        String lastName = "Doe";
-        String password = "qwerty";
+        String email = "Marek.Skwarek@mail.com";
+        String firstName = "Marek";
+        String lastName = "Skwarek";
+        String password = "abc123";
 
         // act
         // ponizsze powinno byc w oddzielnych pages
@@ -57,11 +62,11 @@ public class HotelTestlabTests {
         HotelBrowser hotelBrowser = new HotelBrowser(driver);
         HotelsListingPage hotelsListingPage = new HotelsListingPage(driver);
 
-        String email = "johnd@mail.com";
-        String password = "qwerty";
+        String email = "Marek.Skwarek@mail.com";
+        String password = "abc123";
         String hotel = "The Hotel Prime";
-        String checkInDate = "19-02-2022";
-        String checkOutDate = "28-02-2022";
+        String checkInDate = "20-02-2022";
+        String checkOutDate = "23-02-2022";
         String roomName = "Delux Rooms";
 
         // act

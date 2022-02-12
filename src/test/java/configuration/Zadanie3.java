@@ -7,7 +7,7 @@ public class Zadanie3 {
 
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver",
-                "src/main/resources/drivers/chromedriver.exe");
+                "src/main/resources/drivers/chromedriver");
 
         WebDriver driver = new ChromeDriver();
 

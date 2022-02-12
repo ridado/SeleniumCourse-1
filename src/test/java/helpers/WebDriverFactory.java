@@ -9,7 +9,7 @@ public class WebDriverFactory {
 
     public static WebDriver createChromeDriver() {
         System.setProperty("webdriver.chrome.driver",
-                "src/main/resources/drivers/chromedriver.exe");
+                "src/main/resources/drivers/chromedriver");
 
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -19,7 +19,7 @@ public class WebDriverFactory {
 
     public static WebDriver createChromeDriverWithImplicitlyWait(int seconds) {
         System.setProperty("webdriver.chrome.driver",
-                "src/main/resources/drivers/chromedriver.exe");
+                "src/main/resources/drivers/chromedriver");
 
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
