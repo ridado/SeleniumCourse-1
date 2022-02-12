@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pageObjectPattern.pages.AuthenticationPage;
 import pageObjectPattern.pages.CreateAnAccountPage;
 
 public class HotelTestlabTests {
@@ -28,7 +29,7 @@ public class HotelTestlabTests {
         // arrange
         CreateAnAccountPage createAnAccountPage = new CreateAnAccountPage(driver);
 
-        String email = "johd31231132123123@mail.com";
+        String email = "johnd@mail.com";
         String firstName = "John";
         String lastName = "Doe";
         String password = "qwerty";
@@ -43,6 +44,24 @@ public class HotelTestlabTests {
         createAnAccountPage.registerUser(firstName, lastName, password);
 
         // act
-        Assertions.assertEquals("Your account has been created.", createAnAccountPage.getRegistrationConfirmationText());
+        Assertions.assertEquals("Your account has been created.",
+                createAnAccountPage.getRegistrationConfirmationText());
+    }
+
+    @Test
+    public void findAnyHotelZad2() {
+        // arrange
+        AuthenticationPage authenticationPage = new AuthenticationPage(driver);
+
+        String email = "johnd@mail.com";
+        String password = "qwerty";
+
+        // act
+        driver.get("https://hotel-testlab.coderslab.pl/en/");
+        driver.findElement(By.xpath("//*[@id=\"header\"]/div[3]/div/div/div[7]/ul/li/a/span")).click();
+
+        authenticationPage.loginAs(email, password);
+
+        driver.findElement(By.id("header_logo")).click();
     }
 }
