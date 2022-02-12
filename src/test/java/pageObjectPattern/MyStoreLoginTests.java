@@ -23,7 +23,7 @@ public class MyStoreLoginTests {
 
     @AfterEach
     public void tearDown() {
-        //driver.quit();
+        driver.quit();
     }
 
     @Test
