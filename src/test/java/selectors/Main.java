@@ -60,7 +60,7 @@ public class Main {
         driver.findElement(By.id("SubmitCreate")).click();
 
         // Zadanie4 - za pomoca xpath
-        WebElement firstNameInput = driver.findElement(By.xpath("//input[@id='customer_firstname']"));
+        WebElement firstNameInput = driver.findElement(By.xpath("//*[@id='customer_firstname']"));
         if (firstNameInput.isDisplayed()) {
             firstNameInput.clear();
             firstNameInput.sendKeys("John");
